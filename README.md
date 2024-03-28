@@ -1,6 +1,6 @@
 # ACMEVita
 
-Projeto de modelagem de dados e criação de uma API utilizando Python e Flask.
+Projeto de modelagem de dados e criação de uma API utilizando Python e qualquer framework de sua escolha (Flask, FastAPI, Django etc).
 
 **Este projeto é parte do processo de seleção de desenvolvedor backend da [Telavita](https://telavita.com.br).**
 
@@ -30,15 +30,16 @@ O seu único desenvolvedor backend está de ferias, você foi recrutado para fin
 * Referência (Swagger ou similar)
 * Documentação e instruções de configuração
 * Separação das camadas de responsabilidade (modelagem de dados, serialização, regras de negócio, etc)
+* Conteinerização
 
 ### Instruções
 
 1. Faça um _fork_ ou download deste projeto.
 2. Trabalhe localmente no seu projeto, faça até o ponto que conseguir.
 3. Você está livre para organizar a estrutura do projeto como preferir.
-4. Você deve utilizar o Flask ou FastAPI para criar os endpoints da API.
-4. Você pode utilizar a ORM de sua preferência para modelagem de dados.
-5. Suba o seu projeto para o GitHub e habilite a funcionalidade de Issues.
-6. Nos envie o link para o seu projeto, **mesmo que não esteja finalizado!**
+4. Você deve utilizar o framework escolhido para criar os endpoints da API.
+5. Você pode utilizar a ORM de sua preferência para modelagem de dados.
+6. Suba o seu projeto para o GitHub e habilite a funcionalidade de Issues.
+7. Nos envie o link para o seu projeto, **mesmo que não esteja finalizado!**
 
-**Qualquer dúvida, entre em contato com [Rafael](mailto:rc@telavita.com.br)!**
+**Qualquer dúvida, [entre em contato](mailto:jc@telavita.com.br)!**
