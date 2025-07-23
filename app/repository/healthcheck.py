@@ -1,13 +1,14 @@
-from sqlite3 import Connection
+from sqlite3 import Cursor
 from app.dtos.healthcheck import HealthCheckResponseDTO
-from fastapi import HTTPException
+
 
 class HealthCheckRepository:
-    def __init__(self, sqlite_cursor: Connection) -> None:
-        self.sqlite_cursor: Connection = sqlite_cursor
+    def __init__(self, sqlite_cursor: Cursor) -> None:
+        self.sqlite_cursor: Cursor = sqlite_cursor
+        self.QUERIES = "app/repository/queries"
 
     def check_health(self) -> HealthCheckResponseDTO:
-        self.sqlite_cursor.execute("SELECT 1")
-        resp = HealthCheckResponseDTO(status="healthy", message="Database connection is healthy")
+        query = open(f"{self.QUERIES}/healthcheck.sql").read()
+        self.sqlite_cursor.execute(query)
+        resp = HealthCheckResponseDTO(status="healthy", message="Conexão com o banco de dados está funcionando.")
         return resp
-        
