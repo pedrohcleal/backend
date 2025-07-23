@@ -26,18 +26,18 @@ def sqlite_cursor_with_users():
     conn.close()
 
 
-def test_busca_colaboradores_controller(sqlite_cursor_with_users):
+def test_busca_colaboradores_controller(sqlite_cursor_with_users: sqlite3.Cursor):
     repo = InternalRepository(sqlite_cursor_with_users)
     usecase = ColaboradorUsecase(repo)
     controller = BuscaColaboradoresController(usecase)
-    result = controller.execute()
+    result: list[ColaboradorDTO] = controller.execute()
 
     assert isinstance(result, list)
     assert all(isinstance(user, ColaboradorDTO) for user in result)
     assert len(result) == 2
 
-    joao = next(user for user in result if user.nome_completo == "João Silva")
-    maria = next(user for user in result if user.nome_completo == "Maria Souza")
+    joao: ColaboradorDTO = next(user for user in result if user.nome_completo == "João Silva")
+    maria: ColaboradorDTO = next(user for user in result if user.nome_completo == "Maria Souza")
 
     assert joao.have_dependents is True
     assert maria.have_dependents is False
