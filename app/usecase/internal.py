@@ -7,9 +7,7 @@ class DepartamentoUsecase:
         self.internal_repository: InternalRepository = internal_repository
 
     def execute(self) -> list[DepartamentoDTO]:
-        departamentos: list[
-            DepartamentoDTO
-        ] = self.internal_repository.get_departamentos()
+        departamentos: list[DepartamentoDTO] = self.internal_repository.get_departamentos()
         return departamentos
 
 

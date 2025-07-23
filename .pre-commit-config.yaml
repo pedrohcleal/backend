@@ -47,15 +47,6 @@ repos:
         args: [--line-length=120]
         additional_dependencies: [black==22.1.0]
 
-  - repo: https://github.com/executablebooks/mdformat
-    rev: 0.7.17
-    hooks:
-      - id: mdformat
-        additional_dependencies:
-          - mdformat-gfm
-          - mdformat_frontmatter
-        exclude: CHANGELOG.md
-
   - repo: local
     hooks:
     - id: unit_test

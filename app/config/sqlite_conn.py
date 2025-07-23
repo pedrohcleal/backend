@@ -15,9 +15,10 @@ def create_sqlite_conn(db_path: str = DB_PATH):
 
 
 def create_tables():
-    Path(DB_PATH).touch(exist_ok=True)  # Cria o arquivo se não existir
     with create_sqlite_conn() as conn:
         cursor = conn.cursor()
+        
+        # Tabela departamentos
         cursor.execute(
             """
         CREATE TABLE IF NOT EXISTS departamentos (
