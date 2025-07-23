@@ -1,8 +1,6 @@
-from sqlite3 import Cursor
 from app.dtos.healthcheck import HealthCheckResponseDTO
 from fastapi import HTTPException
 from app.usecase.healthcheck import HealthcheckUsecase
-from app.repository.healthcheck import HealthCheckRepository
 
 
 class HealthCheckController:
@@ -14,4 +12,3 @@ class HealthCheckController:
             return self.healthcheck_usecase.execute()
         except Exception as e:
             raise HTTPException(status_code=500, detail=str(e))
-        

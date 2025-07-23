@@ -10,5 +10,7 @@ class HealthCheckRepository:
     def check_health(self) -> HealthCheckResponseDTO:
         query = open(f"{self.QUERIES}/healthcheck.sql").read()
         self.sqlite_cursor.execute(query)
-        resp = HealthCheckResponseDTO(status="healthy", message="Conexão com o banco de dados está funcionando.")
+        resp = HealthCheckResponseDTO(
+            status="healthy", message="Conexão com o banco de dados está funcionando."
+        )
         return resp

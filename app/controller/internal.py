@@ -2,7 +2,8 @@ from app.dtos.internal import DepartamentoDTO, ColaboradorDTO
 from app.usecase.internal import DepartamentoUsecase, ColaboradorUsecase
 from fastapi import HTTPException
 
-class BuscaDepartamentosController():
+
+class BuscaDepartamentosController:
     def __init__(self, internal_usecase: DepartamentoUsecase) -> None:
         self.internal_usecase: DepartamentoUsecase = internal_usecase
 
@@ -12,8 +13,9 @@ class BuscaDepartamentosController():
         except Exception as e:
             raise HTTPException(status_code=500, detail=str(e))
         return departamentos
-    
-class BuscaColaboradoresController():
+
+
+class BuscaColaboradoresController:
     def __init__(self, internal_usecase: ColaboradorUsecase) -> None:
         self.internal_usecase: ColaboradorUsecase = internal_usecase
 
