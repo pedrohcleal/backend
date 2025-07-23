@@ -1,10 +1,10 @@
-from app.dtos.internal import DepartamentoDTO
-from app.usecase.internal import InternalUsecase
+from app.dtos.internal import DepartamentoDTO, ColaboradorDTO
+from app.usecase.internal import DepartamentoUsecase, ColaboradorUsecase
 from fastapi import HTTPException
 
-class InternalController():
-    def __init__(self, internal_usecase: InternalUsecase) -> None:
-        self.internal_usecase: InternalUsecase = internal_usecase
+class BuscaDepartamentosController():
+    def __init__(self, internal_usecase: DepartamentoUsecase) -> None:
+        self.internal_usecase: DepartamentoUsecase = internal_usecase
 
     def execute(self) -> list[DepartamentoDTO]:
         try:
@@ -12,3 +12,14 @@ class InternalController():
         except Exception as e:
             raise HTTPException(status_code=500, detail=str(e))
         return departamentos
+    
+class BuscaColaboradoresController():
+    def __init__(self, internal_usecase: ColaboradorUsecase) -> None:
+        self.internal_usecase: ColaboradorUsecase = internal_usecase
+
+    def execute(self) -> list[ColaboradorDTO]:
+        try:
+            colaboradores: list[ColaboradorDTO] = self.internal_usecase.execute()
+        except Exception as e:
+            raise HTTPException(status_code=500, detail=str(e))
+        return colaboradores
