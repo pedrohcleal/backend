@@ -60,7 +60,7 @@ python3 main.py
 | GET    | `/api/internal/departamentos` | Lista os departamentos       |
 | GET    | `/api/internal/colaboradores` | Lista os colaboradores       |
 
-> Consultar documentação gerada em `/docs`
+> Consultar documentação gerada em `/docs` http://localhost:8000/docs
 
 ## Rodando os Testes
 
