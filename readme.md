@@ -1,109 +1,76 @@
-# 📦 Internal API – FastAPI + Clean Architecture
+![Python](https://img.shields.io/badge/python-3.12-3670A0?style=flat&logo=python&logoColor=ffdd54)
+![FastAPI](https://img.shields.io/badge/fastapi-0.116.1-009688?style=flat&logo=fastapi&logoColor=white)
+![Pydantic](https://img.shields.io/badge/pydantic-2.11.7-0A66C2?style=flat&logo=pydantic&logoColor=white)
+![Pytest](https://img.shields.io/badge/pytest-8.4.1-0A9EDC?style=flat&logo=pytest&logoColor=white)
+![Uvicorn](https://img.shields.io/badge/uvicorn-0.35.0-121212?style=flat&logo=uvicorn&logoColor=white)
+![Swagger](https://img.shields.io/badge/swagger-UI-85EA2D?style=flat&logo=swagger&logoColor=black)
 
-API construída com FastAPI seguindo princípios de Clean Architecture e injeção de dependência manual, com persistência em SQLite.
+# ACMEVita API
 
-## 🔧 Estrutura do Projeto
+API construída com FastAPI seguindo princípios de Clean Architecture e injeção de dependência, com persistência em SQLite.
+
+## Estrutura do Projeto
 
 ```
-.
+├── Dockerfile                  # Container Docker para o projeto
+├── Makefile                    # Comandos automatizados (build, run, dev, etc.)
 ├── app
-│   ├── config/                  # Conexão com banco SQLite
-│   ├── controller/              # Camada de controller (entrada)
-│   ├── dependency_injection/    # Injeção de dependências
-│   ├── dtos/                    # Data Transfer Objects
-│   ├── repository/              # Acesso a dados e queries SQL
-│   │   └── queries/             # Arquivos .sql puros
-│   ├── route/                   # Rotas da API
-│   └── usecase/                 # Regras de negócio
-├── db.sqlite3                   # Banco de dados local
-├── main.py                      # Ponto de entrada da aplicação
-├── pyproject.toml               # Dependências (usando uv ou poetry)
-├── test.md                      # Anotações de testes manuais
-├── tests/                       # Testes automatizados (pytest)
-└── uv.lock                      # Lockfile do `uv`
+│   ├── config/                 # Conexão com banco SQLite
+│   ├── controller/             # Camada de entrada (request handlers)
+│   ├── dependency_injection/   # Injeção de dependências (para controllers)
+│   ├── dtos/                   # Data Transfer Objects (entradas/saídas da API)
+│   ├── repository/             # Acesso a dados e execução de queries
+│   ├── route/                  # Definição das rotas da API
+│   └── usecase/                # Regras de negócio (application layer)
+├── db.sqlite3                  # Banco de dados local SQLite
+├── main.py                     # Ponto de entrada da aplicação FastAPI
+├── pyproject.toml              # Arquivo de dependências (gerenciado com `uv` ou `poetry`)
+├── readme.md                   # Documentação do projeto
+├── test.md                     # Descrição do desafio
+└── uv.lock                     # Lockfile do `uv`
+└── requirements.tx             # Dependências
 ```
 
-## 🚀 Como Executar
+## Como preparar ambiente
 
-### ✅ Usando `uv` (recomendado)
+### Usando `uv` (recomendado)
 
-1. Instale o [uv](https://github.com/astral-sh/uv):
-
-```bash
-pip install uv
-```
-
-2. Instale as dependências:
+1. Instale o uv em https://github.com/astral-sh/uv
 
 ```bash
-uv pip install -r requirements.txt
-```
-
-3. Execute a aplicação:
-
-```bash
-uvicorn main:app --reload
-```
-
----
-
-### 🧪 Usando `venv` (alternativa)
-
-1. Crie o ambiente virtual:
-
-```bash
-python -m venv .venv
-```
-
-2. Ative o ambiente:
-
-* Windows:
-
-```bash
-.venv\Scripts\activate
-```
-
-* Linux/macOS:
-
-```bash
+uv venv
 source .venv/bin/activate
+uv sync
+uv run main.py
 ```
 
-3. Instale as dependências:
-
+2. Ou utilize o padrao venv
 ```bash
+python3 -m venv venv
+source venv/bin/activate
 pip install -r requirements.txt
+python3 main.py
 ```
 
-4. Rode a aplicação:
+## Rotas Disponíveis
 
-```bash
-uvicorn main:app --reload
-```
+| Método | Rota                          | Descrição                    |
+| ------ | ----------------------------- | ---------------------------- |
+| GET    | `/api/healthcheck`            | Verifica se a API está no ar |
+| GET    | `/api/internal/departamentos` | Lista os departamentos       |
+| GET    | `/api/internal/colaboradores` | Lista os colaboradores       |
 
----
+> Consultar documentação gerada em `/docs`
 
-## 🧪 Rodando os Testes
+## Rodando os Testes
 
 Utilize o `pytest`:
 
 ```bash
-pytest tests/
+pytest .
 ```
 
----
-
-## 📌 Rotas Disponíveis
-
-| Método | Rota                          | Descrição                    |
-| ------ | ----------------------------- | ---------------------------- |
-| GET    | `/api/internal/departamentos` | Lista os departamentos       |
-| GET    | `/api/internal/colaboradores` | Lista os colaboradores       |
-| GET    | `/api/healthcheck`            | Verifica se a API está no ar |
-
----
-
-### 🐳 Comandos Makefile
+### Comandos Makefile
 
 ```bash
 # 🔧 Build da imagem Docker
@@ -115,9 +82,6 @@ make run
 # ♻️ Rebuild completo (remove e recria a imagem)
 make rebuild
 
-# 🛠️ Rodar em modo desenvolvimento (volume local)
-make dev
-
 # 🧹 Remover container e imagem
 make clean
 ```
@@ -125,18 +89,9 @@ make clean
 > Obs: Todos os comandos usam `sudo`. Se não precisar de `sudo` no seu ambiente, remova dos comandos no `Makefile`.
 
 
-## 🏗️ Padrões Utilizados
+## Padrões Utilizados
 
 * Clean Architecture (camadas desacopladas)
 * SQLite com queries puras
 * FastAPI com tipagem forte
 * Injeção de dependência manual
-
----
-
-## 📋 Requisitos
-
-* Python 3.11+
-* FastAPI
-* Uvicorn
-* Pytest

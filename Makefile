@@ -11,14 +11,10 @@ build:
 run:
 	sudo docker run -it --rm -p $(PORT):8000 --name $(CONTAINER_NAME) $(IMAGE_NAME)
 
-# Rebuilda a imagem (remove e builda novamente)
+# Rebuilda a imagem
 rebuild:
 	sudo docker rmi -f $(IMAGE_NAME) || true
 	$(MAKE) build
-
-# Executa a aplicação com bind de volume (modo desenvolvimento)
-dev:
-	sudo docker run -it --rm -p $(PORT):8000 -v $$PWD:/app --name $(CONTAINER_NAME) $(IMAGE_NAME)
 
 # Remove o container e imagem, se existirem
 clean:
