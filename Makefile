@@ -14,7 +14,7 @@ run:
 # Rebuilda a imagem (remove e builda novamente)
 rebuild:
 	sudo docker rmi -f $(IMAGE_NAME) || true
-	sudo $(MAKE) build
+	$(MAKE) build
 
 # Executa a aplicação com bind de volume (modo desenvolvimento)
 dev:

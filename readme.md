@@ -103,6 +103,28 @@ pytest tests/
 
 ---
 
+### 🐳 Comandos Makefile
+
+```bash
+# 🔧 Build da imagem Docker
+make build
+
+# ▶️ Rodar o container
+make run
+
+# ♻️ Rebuild completo (remove e recria a imagem)
+make rebuild
+
+# 🛠️ Rodar em modo desenvolvimento (volume local)
+make dev
+
+# 🧹 Remover container e imagem
+make clean
+```
+
+> Obs: Todos os comandos usam `sudo`. Se não precisar de `sudo` no seu ambiente, remova dos comandos no `Makefile`.
+
+
 ## 🏗️ Padrões Utilizados
 
 * Clean Architecture (camadas desacopladas)
