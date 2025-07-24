@@ -26,7 +26,6 @@ API construída com FastAPI seguindo princípios de Clean Architecture e injeç�
 ├── main.py                     # Ponto de entrada da aplicação FastAPI
 ├── pyproject.toml              # Arquivo de dependências (gerenciado com `uv` ou `poetry`)
 ├── readme.md                   # Documentação do projeto
-├── test.md                     # Descrição do desafio
 └── uv.lock                     # Lockfile do `uv`
 └── requirements.tx             # Dependências
 ```
