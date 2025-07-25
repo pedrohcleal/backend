@@ -27,7 +27,7 @@ def get_healthcheck() -> list[DepartamentoDTO]:
     return output
 
 
-@router.get("/colaboradores/{departamento_id}", summary="Lista os colaboradores disponíveis.")
+@router.get("/colaboradores/{departamento_id}", summary="Lista os colaboradores disponíveis em determinado departamento.")
 def busca_colaboradores_deparamento(departamento_id: int) -> list[ColaboradorDTO]:
     with create_sqlite_conn() as sqlite_conn:
         sqlite_cursor: Cursor = sqlite_conn.cursor()
