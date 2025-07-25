@@ -27,13 +27,11 @@ def get_healthcheck() -> list[DepartamentoDTO]:
     return output
 
 
-@router.get("/colaboradores", summary="Lista os colaboradores disponíveis.")
-def get_colaboradores() -> list[ColaboradorDTO]:
+@router.get("/colaboradores/{departamento_id}", summary="Lista os colaboradores disponíveis.")
+def busca_colaboradores_deparamento(departamento_id: int) -> list[ColaboradorDTO]:
     with create_sqlite_conn() as sqlite_conn:
         sqlite_cursor: Cursor = sqlite_conn.cursor()
         internal_injection = BuscaColaboradoresInjection(sqlite_cursor=sqlite_cursor)
-        internal_controller: BuscaColaboradoresController = (
-            internal_injection.new_busca_colaboradores()
-        )
-        output: list[ColaboradorDTO] = internal_controller.execute()
+        internal_controller: BuscaColaboradoresController = internal_injection.new_busca_colaboradores()
+        output: list[ColaboradorDTO] = internal_controller.execute(departamento_id=departamento_id)
     return output

@@ -19,9 +19,9 @@ class BuscaColaboradoresController:
     def __init__(self, internal_usecase: ColaboradorUsecase) -> None:
         self.internal_usecase: ColaboradorUsecase = internal_usecase
 
-    def execute(self) -> list[ColaboradorDTO]:
+    def execute(self, departamento_id) -> list[ColaboradorDTO]:
         try:
-            colaboradores: list[ColaboradorDTO] = self.internal_usecase.execute()
+            colaboradores: list[ColaboradorDTO] = self.internal_usecase.execute(departamento_id)
         except Exception as e:
             raise HTTPException(status_code=500, detail=str(e))
         return colaboradores

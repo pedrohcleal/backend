@@ -2,6 +2,7 @@ from pydantic import BaseModel
 
 
 class DepartamentoDTO(BaseModel):
+    id: int
     nome_dp: str
 
 
