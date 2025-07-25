@@ -57,7 +57,7 @@ python3 main.py
 | ------ | ----------------------------- | ---------------------------- |
 | GET    | `/api/healthcheck`            | Verifica se a API está no ar |
 | GET    | `/api/internal/departamentos` | Lista os departamentos       |
-| GET    | `/api/internal/colaboradores` | Lista os colaboradores       |
+| GET    | `/api/internal/colaboradores` | Lista os colaboradores de um departamento  |
 
 > Consultar documentação gerada em `/docs` http://localhost:8000/docs
 
